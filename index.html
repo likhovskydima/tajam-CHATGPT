@@ -1,1 +1,964 @@
-s
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DENTAL — сучасна стоматологія</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #06080f;
+        --bg-soft: rgba(22, 30, 50, 0.55);
+        --accent: #5c7aff;
+        --accent-strong: #3c5dff;
+        --text: #e9ecf8;
+        --text-muted: #8c94b8;
+        --card-border: rgba(138, 160, 255, 0.2);
+        --glass: rgba(17, 22, 38, 0.75);
+        --gradient: linear-gradient(135deg, #6078ff 0%, #a855f7 50%, #0ea5e9 100%);
+        --shadow-soft: 0 30px 60px rgba(17, 30, 61, 0.35);
+        --shadow-card: 0 20px 50px rgba(15, 22, 45, 0.45);
+        scroll-behavior: smooth;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: radial-gradient(circle at 10% 10%, rgba(96, 120, 255, 0.12), transparent 40%),
+          radial-gradient(circle at 85% 25%, rgba(168, 85, 247, 0.14), transparent 45%),
+          var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(18px);
+        background: rgba(6, 8, 15, 0.85);
+        border-bottom: 1px solid rgba(92, 122, 255, 0.15);
+      }
+
+      .nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 28px;
+      }
+
+      .nav__brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .nav__brand span {
+        display: inline-flex;
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: var(--gradient);
+        box-shadow: 0 0 40px rgba(92, 122, 255, 0.35);
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+      }
+
+      .nav__links {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+      }
+
+      .nav__links a {
+        font-weight: 500;
+        color: var(--text-muted);
+        position: relative;
+        transition: color 0.3s ease;
+      }
+
+      .nav__links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 2px;
+        background: var(--gradient);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+
+      .nav__links a:hover,
+      .nav__links a.active {
+        color: var(--text);
+      }
+
+      .nav__links a:hover::after,
+      .nav__links a.active::after {
+        transform: scaleX(1);
+      }
+
+      .nav__cta {
+        padding: 12px 24px;
+        border-radius: 16px;
+        background: var(--gradient);
+        box-shadow: 0 12px 25px rgba(92, 122, 255, 0.35);
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 28px 120px;
+      }
+
+      section {
+        margin-top: 120px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        align-items: center;
+        gap: 48px;
+        padding-top: 120px;
+      }
+
+      .hero__content h1 {
+        font-size: clamp(2.6rem, 5vw, 4.6rem);
+        font-weight: 800;
+        line-height: 1.05;
+        margin-bottom: 24px;
+      }
+
+      .hero__content h1 span {
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .hero__content p {
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        max-width: 460px;
+        line-height: 1.65;
+        margin-bottom: 40px;
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+      }
+
+      .btn {
+        padding: 14px 28px;
+        border-radius: 18px;
+        border: none;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        cursor: pointer;
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+      }
+
+      .btn--primary {
+        background: var(--gradient);
+        color: #0b1021;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .btn--ghost {
+        background: rgba(92, 122, 255, 0.12);
+        color: var(--text);
+        border: 1px solid rgba(92, 122, 255, 0.35);
+      }
+
+      .btn:hover {
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: 0 20px 45px rgba(92, 122, 255, 0.45);
+      }
+
+      .hero__visual {
+        position: relative;
+        isolation: isolate;
+        display: grid;
+        place-items: center;
+      }
+
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(6px);
+        opacity: 0.6;
+        animation: float 12s ease-in-out infinite;
+      }
+
+      .orb:nth-child(1) {
+        width: 420px;
+        height: 420px;
+        background: rgba(92, 122, 255, 0.25);
+        animation-delay: -2s;
+      }
+
+      .orb:nth-child(2) {
+        width: 280px;
+        height: 280px;
+        background: rgba(14, 165, 233, 0.35);
+        animation-delay: 1.5s;
+      }
+
+      .orb:nth-child(3) {
+        width: 180px;
+        height: 180px;
+        background: rgba(168, 85, 247, 0.25);
+        animation-delay: -4s;
+      }
+
+      .tooth-card {
+        position: relative;
+        width: min(360px, 90vw);
+        border-radius: 28px;
+        padding: 48px 38px;
+        background: rgba(9, 13, 26, 0.7);
+        border: 1px solid rgba(121, 146, 255, 0.3);
+        box-shadow: var(--shadow-card);
+        backdrop-filter: blur(18px);
+        overflow: hidden;
+      }
+
+      .tooth-card::after {
+        content: "";
+        position: absolute;
+        inset: 12px;
+        border-radius: 24px;
+        border: 1px solid rgba(92, 122, 255, 0.25);
+        opacity: 0.5;
+      }
+
+      .tooth-card img {
+        width: 120px;
+        filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.4));
+        animation: float-slow 9s ease-in-out infinite;
+      }
+
+      .tooth-card h3 {
+        margin-top: 32px;
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+
+      .badge {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        background: rgba(92, 122, 255, 0.25);
+        color: var(--text);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .stat-grid {
+        margin-top: 80px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 24px;
+      }
+
+      .stat-card {
+        padding: 28px 24px;
+        border-radius: 22px;
+        border: 1px solid var(--card-border);
+        background: rgba(11, 15, 30, 0.7);
+        backdrop-filter: blur(12px);
+      }
+
+      .stat-card strong {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .section-heading {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 48px;
+      }
+
+      .section-heading span {
+        color: var(--accent);
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .section-heading h2 {
+        font-size: clamp(2rem, 3vw, 3.2rem);
+        line-height: 1.1;
+      }
+
+      .section-heading p {
+        color: var(--text-muted);
+        max-width: 520px;
+        line-height: 1.6;
+      }
+
+      .services {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 28px;
+      }
+
+      .service-card {
+        position: relative;
+        padding: 32px 28px;
+        border-radius: 22px;
+        background: rgba(10, 14, 26, 0.8);
+        border: 1px solid rgba(92, 122, 255, 0.2);
+        overflow: hidden;
+        transition: transform 0.4s ease, border 0.4s ease;
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        inset: -120px;
+        background: radial-gradient(circle at top, rgba(92, 122, 255, 0.35), transparent 60%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(92, 122, 255, 0.5);
+      }
+
+      .service-card:hover::before {
+        opacity: 1;
+      }
+
+      .service-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+      }
+
+      .service-card p {
+        color: var(--text-muted);
+        line-height: 1.6;
+        font-size: 0.97rem;
+        margin-bottom: 24px;
+      }
+
+      .service-card .tag {
+        display: inline-flex;
+        padding: 8px 14px;
+        border-radius: 12px;
+        background: rgba(92, 122, 255, 0.18);
+        color: var(--text);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .about {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 48px;
+        align-items: center;
+      }
+
+      .about__card {
+        padding: 38px;
+        border-radius: 26px;
+        background: rgba(10, 14, 26, 0.85);
+        border: 1px solid rgba(92, 122, 255, 0.25);
+        box-shadow: var(--shadow-card);
+      }
+
+      .about__card ul {
+        margin-top: 24px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .about__card li {
+        list-style: none;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
+      .about__card li::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-top: 8px;
+        background: var(--gradient);
+        box-shadow: 0 0 18px rgba(92, 122, 255, 0.4);
+      }
+
+      .about__image {
+        position: relative;
+        padding: 70px 40px;
+      }
+
+      .about__image::before,
+      .about__image::after {
+        content: "";
+        position: absolute;
+        border-radius: 24px;
+        border: 1px solid rgba(92, 122, 255, 0.3);
+      }
+
+      .about__image::before {
+        inset: 20px;
+        backdrop-filter: blur(6px);
+      }
+
+      .about__image::after {
+        inset: 0;
+        background: linear-gradient(120deg, rgba(92, 122, 255, 0.2), rgba(14, 165, 233, 0.05));
+        z-index: -2;
+      }
+
+      .about__image img {
+        width: 100%;
+        border-radius: 18px;
+        display: block;
+        position: relative;
+        z-index: 1;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .testimonials {
+        position: relative;
+        padding: 64px;
+        border-radius: 28px;
+        background: linear-gradient(140deg, rgba(92, 122, 255, 0.25), rgba(6, 8, 15, 0.9));
+        overflow: hidden;
+      }
+
+      .testimonials::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 10% 80%, rgba(14, 165, 233, 0.35), transparent 70%);
+        opacity: 0.5;
+        z-index: -1;
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 28px;
+      }
+
+      .quote {
+        padding: 28px;
+        border-radius: 22px;
+        background: rgba(6, 9, 20, 0.85);
+        border: 1px solid rgba(92, 122, 255, 0.22);
+        min-height: 210px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .quote p {
+        color: var(--text-muted);
+        line-height: 1.6;
+        flex-grow: 1;
+      }
+
+      .quote strong {
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+      }
+
+      .cta {
+        margin-top: 120px;
+        padding: 60px 48px;
+        border-radius: 26px;
+        background: linear-gradient(135deg, rgba(92, 122, 255, 0.8), rgba(14, 165, 233, 0.8));
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        align-items: center;
+        gap: 28px;
+      }
+
+      .cta h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .cta p {
+        color: rgba(6, 8, 15, 0.75);
+        line-height: 1.5;
+      }
+
+      .cta .btn {
+        justify-self: start;
+        padding: 16px 34px;
+      }
+
+      footer {
+        margin-top: 120px;
+        padding: 48px 28px 60px;
+        border-top: 1px solid rgba(92, 122, 255, 0.15);
+        background: rgba(5, 7, 14, 0.85);
+      }
+
+      .footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 28px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-inner p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      .socials {
+        display: flex;
+        gap: 18px;
+      }
+
+      .socials a {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: rgba(92, 122, 255, 0.15);
+        display: grid;
+        place-items: center;
+        color: var(--text);
+        font-weight: 600;
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+
+      .socials a:hover {
+        transform: translateY(-4px);
+        background: rgba(92, 122, 255, 0.35);
+      }
+
+      .floating-dots {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      [data-animate] {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      [data-animate].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        50% {
+          transform: translate3d(0, -25px, 0) scale(1.05);
+        }
+        100% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+      }
+
+      @keyframes float-slow {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-16px) rotate(3deg);
+        }
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+      }
+
+      @media (max-width: 768px) {
+        header {
+          position: fixed;
+          width: 100%;
+        }
+
+        .nav {
+          padding: 16px 20px;
+          flex-wrap: wrap;
+          gap: 18px;
+        }
+
+        .nav__links {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .hero {
+          padding-top: 160px;
+        }
+
+        .cta {
+          text-align: center;
+        }
+
+        .cta .btn {
+          justify-self: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="floating-dots">
+      <canvas id="background-canvas"></canvas>
+    </div>
+    <header>
+      <nav class="nav">
+        <a href="#top" class="nav__brand">
+          <span>D</span>
+          DENTAL
+        </a>
+        <div class="nav__links">
+          <a href="#about">Про нас</a>
+          <a href="#services">Послуги</a>
+          <a href="#team">Команда</a>
+          <a href="#contacts">Контакти</a>
+        </div>
+        <a href="#contacts" class="nav__cta">Записатись</a>
+      </nav>
+    </header>
+    <main id="top">
+      <section class="hero">
+        <div class="hero__content" data-animate>
+          <h1>
+            Стоматологія <span>DENTAL</span> — цифровий підхід до<br />
+            блискучої посмішки
+          </h1>
+          <p>
+            Ми поєднуємо новітні технології, досвід лікарів та турботу про ваш
+            комфорт, щоб кожен візит у клініку був легким та результативним.
+          </p>
+          <div class="hero__actions">
+            <a href="#contacts" class="btn btn--primary">Записатись на консультацію</a>
+            <a href="#services" class="btn btn--ghost">Переглянути послуги</a>
+          </div>
+          <div class="stat-grid">
+            <div class="stat-card" data-animate>
+              <strong>12+</strong>
+              років досвіду у складній стоматології
+            </div>
+            <div class="stat-card" data-animate>
+              <strong>4.9⭐</strong>
+              середня оцінка від понад 1200 пацієнтів
+            </div>
+            <div class="stat-card" data-animate>
+              <strong>24/7</strong>
+              підтримка та онлайн-консультації
+            </div>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="orb"></div>
+          <div class="orb"></div>
+          <div class="orb"></div>
+          <div class="tooth-card" data-animate>
+            <div class="badge">Інновації</div>
+            <img src="https://cdn.jsdelivr.net/gh/naptha/tessdata/tooth.png" alt="3D Tooth" />
+            <h3>Цифрове планування усмішки та безболісне лікування.</h3>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="section-heading" data-animate>
+          <span>про клініку</span>
+          <h2>Технології майбутнього для турботи про вашу посмішку</h2>
+          <p>
+            DENTAL — це сучасна стоматологічна клініка у центрі Києва. Ми
+            поєднали комфортний простір, найкращих спеціалістів та інтелектуальні
+            цифрові протоколи лікування.
+          </p>
+        </div>
+        <div class="about">
+          <div class="about__card" data-animate>
+            <h3>Чому пацієнти обирають нас</h3>
+            <ul>
+              <li>3D-сканування зубів, діджитал-планування та друк кап за 24 години.</li>
+              <li>Команда з лікарів-пародонтологів, ортодонтів та ортопедів.</li>
+              <li>Анестезія нового покоління, комфорт без стресу та шуму бормашини.</li>
+              <li>Супровід після лікування, план збереження результату.</li>
+            </ul>
+          </div>
+          <div class="about__image" data-animate>
+            <img
+              src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=80"
+              alt="Стоматологічний кабінет"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="services">
+        <div class="section-heading" data-animate>
+          <span>послуги</span>
+          <h2>Комплексна стоматологія, яка піклується про все</h2>
+          <p>
+            Від профілактики до цифрової імплантації — ми створюємо індивідуальні
+            плани лікування з урахуванням ваших цілей та очікувань.
+          </p>
+        </div>
+        <div class="services">
+          <article class="service-card" data-animate>
+            <div class="tag">гігієна</div>
+            <h3>Професійна чистка AirFlow</h3>
+            <p>
+              Видаляємо наліт та пігментацію, відновлюємо природну білизну
+              емалі, працюємо максимально делікатно.
+            </p>
+          </article>
+          <article class="service-card" data-animate>
+            <div class="tag">естетика</div>
+            <h3>Вініри та композитні реставрації</h3>
+            <p>
+              Створюємо ідеальні лінії усмішки, використовуємо цифровий підхід
+              та преміальні матеріали світових брендів.
+            </p>
+          </article>
+          <article class="service-card" data-animate>
+            <div class="tag">ортодонтія</div>
+            <h3>Елайнери та брекет-системи</h3>
+            <p>
+              Невидиме вирівнювання зубів з онлайн-моніторингом прогресу та
+              регулярними корекціями.
+            </p>
+          </article>
+          <article class="service-card" data-animate>
+            <div class="tag">імплантація</div>
+            <h3>Комп'ютерна імплантація</h3>
+            <p>
+              Планування операції у 3D, безпечне встановлення імплантів за один
+              візит та швидке відновлення.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="team">
+        <div class="section-heading" data-animate>
+          <span>команда</span>
+          <h2>Лікарі, які перетворюють турботу на мистецтво</h2>
+          <p>
+            Наші спеціалісти постійно навчаються та впроваджують найновіші
+            методики, щоб ви отримували результати, яким можна довіряти.
+          </p>
+        </div>
+        <div class="testimonials">
+          <div class="testimonials-grid">
+            <article class="quote" data-animate>
+              <strong>д-р Оксана Мельник</strong>
+              <p>
+                Провідна ортодонтка, сертифікована Invisalign. Поєднує цифровий
+                дизайн усмішки з персоналізованими планами лікування.
+              </p>
+              <span>15 років досвіду</span>
+            </article>
+            <article class="quote" data-animate>
+              <strong>д-р Андрій Іванюк</strong>
+              <p>
+                Імплантолог та хірург. Використовує мінімально інвазивні
+                протоколи, щоб забезпечити швидке відновлення.
+              </p>
+              <span>1200+ імплантів</span>
+            </article>
+            <article class="quote" data-animate>
+              <strong>д-р Марія Лещенко</strong>
+              <p>
+                Естетичний стоматолог. Допомагає досягти природної білизни та
+                гармонії усмішки без компромісів.</p>
+              <span>Автор 8 наукових публікацій</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacts">
+        <div class="cta" data-animate>
+          <div>
+            <h3>Створимо вашу усмішку мрії разом</h3>
+            <p>
+              Заповніть форму або зателефонуйте, і ми підберемо зручний час
+              прийому. Перший візит включає цифрову діагностику та консультацію.
+            </p>
+          </div>
+          <div>
+            <a href="tel:+380441234567" class="btn btn--primary">+38 (044) 123 45 67</a>
+          </div>
+          <div>
+            <a href="mailto:hello@dental.ua" class="btn btn--ghost">hello@dental.ua</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-inner">
+        <p>© 2024 DENTAL. Турбота про здоров'я вашої посмішки.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const navLinks = document.querySelectorAll('.nav__links a');
+      const sections = [...navLinks].map((link) => document.querySelector(link.getAttribute('href')));
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const id = entry.target.getAttribute('id');
+            const link = document.querySelector(`.nav__links a[href="#${id}"]`);
+            if (entry.isIntersecting) {
+              navLinks.forEach((navLink) => navLink.classList.remove('active'));
+              if (link) link.classList.add('active');
+            }
+          });
+        },
+        { threshold: 0.35 }
+      );
+
+      sections.forEach((section) => section && observer.observe(section));
+
+      const animatedElements = document.querySelectorAll('[data-animate]');
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2, rootMargin: '0px 0px -80px 0px' }
+      );
+
+      animatedElements.forEach((el) => revealObserver.observe(el));
+
+      const canvas = document.getElementById('background-canvas');
+      const ctx = canvas.getContext('2d');
+
+      const resizeCanvas = () => {
+        const { innerWidth, innerHeight, devicePixelRatio = 1 } = window;
+        canvas.width = innerWidth * devicePixelRatio;
+        canvas.height = innerHeight * devicePixelRatio;
+        canvas.style.width = innerWidth + 'px';
+        canvas.style.height = innerHeight + 'px';
+        ctx.scale(devicePixelRatio, devicePixelRatio);
+      };
+
+      let dots = [];
+      const DOT_COUNT = 60;
+
+      const createDots = () => {
+        dots = Array.from({ length: DOT_COUNT }, () => ({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          radius: Math.random() * 2 + 1,
+          alpha: Math.random() * 0.6 + 0.1,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+        }));
+      };
+
+      const draw = () => {
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        dots.forEach((dot, index) => {
+          dot.x += dot.vx;
+          dot.y += dot.vy;
+
+          if (dot.x < 0 || dot.x > window.innerWidth) dot.vx *= -1;
+          if (dot.y < 0 || dot.y > window.innerHeight) dot.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(92, 122, 255, ${dot.alpha})`;
+          ctx.fill();
+
+          for (let j = index + 1; j < dots.length; j++) {
+            const other = dots[j];
+            const dx = dot.x - other.x;
+            const dy = dot.y - other.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 140) {
+              ctx.beginPath();
+              ctx.moveTo(dot.x, dot.y);
+              ctx.lineTo(other.x, other.y);
+              ctx.strokeStyle = `rgba(92, 122, 255, ${0.12 - distance / 800})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        });
+        requestAnimationFrame(draw);
+      };
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        createDots();
+      });
+
+      resizeCanvas();
+      createDots();
+      draw();
+    </script>
+  </body>
+</html>
